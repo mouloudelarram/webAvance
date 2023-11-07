@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    async function getHelloMessage() {
+      try {
+        // Get the input field value
+        const inputField = document.getElementById("helloInput");
+        const inputValue = inputField.value;
+
+        // Construct the URL with the input value
+        const url = `http://localhost:3000/hello/${inputValue}`;
+
+        const response = await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const helloMessage = await response.json();
+        alert(JSON.stringify(helloMessage));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <input id="helloInput" type="text" placeholder="Enter a value">
+  <button onclick="getHelloMessage()">Cliquez ici</button>
+</body>
+</html>
